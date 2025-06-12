@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Personal Portfolio - Your Name</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1f2937;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+      align-items: center;
+    }
+    h1, h2, h3 {
+      font-weight: 800;
+      color: #111827;
+      margin: 0 0 16px 0;
+      line-height: 1.1;
+    }
+    p {
+      margin: 0 0 16px 0;
+      color: #4b5563;
+      font-size: 1.125rem;
+    }
+    /* Profile Image */
+    .profile-image {
+      border-radius: 50%;
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.1s;
+    }
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding-top: 32px;
+      padding-bottom: 64px;
+      max-width: 600px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-delay: 0.3s;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 16px auto 0 auto;
+      color: #374151;
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.5s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    /* Section */
+    section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      max-width: 700px;
+      width: 100%;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Description items */
+    .desc-item {
+      background: #f9fafb;
+      padding: 24px 32px;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgb(0 0 0 / 0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .desc-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 30px rgb(0 0 0 / 0.1);
+    }
+    /* Animations */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      main {
+        padding: 32px 16px;
+        gap: 48px;
+      }
+      .hero h1 {
+        font-size: 2.25rem;
+      }
+      .hero p {
+        font-size: 1.125rem;
+      }
+      .profile-image {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c9ca07b6-5d7d-402c-bad1-cd781a1d6633.png" alt="Professional portrait photo of Your Name" class="profile-image" />
+    <section class="hero" aria-label="Hero introduction">
+      <h1>Hi, I'm Your Name</h1>
+      <p>A passionate developer crafting simple, elegant, and powerful digital experiences.</p>
+    </section>
+
+    <section class="desc-item" tabindex="0" aria-label="Professional background">
+      <h2>Professional Background</h2>
+      <p>With years of experience in software development, I specialize in building scalable and maintainable web applications.</p>
+    </section>
+
+    <section class="desc-item" tabindex="0" aria-label="Skills and expertise">
+      <h2>Skills & Expertise</h2>
+      <p>JavaScript, React, TypeScript, Node.js, CSS3, HTML5, UI/UX design principles, and test-driven development.</p>
+    </section>
+
+    <section class="desc-item" tabindex="0" aria-label="My mission">
+      <h2>My Mission</h2>
+      <p>To create elegant software solutions that solve real problems and deliver delightful user experiences.</p>
+    </section>
+
+    <section class="desc-item" tabindex="0" aria-label="Contact me call to action">
+      <h2>Get In Touch</h2>
+      <p>If you'd like to connect or collaborate, please send me an email.</p>
+      <button onclick="window.location.href='mailto:your.email@example.com'" aria-label="Send email to Your Name" style="background:#111827;color:#fff;padding:12px 36px;border:none;border-radius:10px;cursor:pointer;font-weight:700;font-size:1rem;transition:background-color 0.3s ease;">Send Email</button>
+    </section>
+  </main>
+
+  <script>
+    // Reveal sections on scroll with IntersectionObserver
+    const sections = document.querySelectorAll('main > section');
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
+
